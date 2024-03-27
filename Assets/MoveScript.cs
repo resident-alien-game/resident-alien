@@ -17,7 +17,6 @@ using UnityEngine;
 public class MoveScript : MonoBehaviour
 {
         public float walkSpeed = 5; // How fast you walk
-        public float rotationSpeed = 10; // How fast you turn
         public float jumpSpeed = 10; // How fast you jump
         public float forceMagnitude=10; // Used when pushing against an object
         public int allowableJumps = 1; // Determine how many jumps allowed at a time
@@ -36,7 +35,7 @@ public class MoveScript : MonoBehaviour
     {
 
 
-        Vector3 inputMove = new Vector3(0, 0, Input.GetAxis("Vertical"));
+        Vector3 inputMove = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
         Vector3 move;
 
         // TransformDirection transforms the input movement vector into a vector
@@ -66,10 +65,6 @@ public class MoveScript : MonoBehaviour
         
         // Move the character controller
         controller.Move(move * Time.deltaTime);
-
-        // Now handle rotation
-        Vector3 rotation = new Vector3(0, Input.GetAxisRaw("Horizontal") * rotationSpeed * Time.deltaTime, 0);
-        gameObject.transform.Rotate(rotation);
     }
     // If you collide with something, push it with a force.
     void OnControllerColliderHit(ControllerColliderHit hit)
