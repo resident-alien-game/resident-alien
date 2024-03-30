@@ -40,7 +40,7 @@ public class FormChange : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         // Check if the collision involves the character
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Kid")
         {
             // Change the character's color to the collision color
             characterRenderer.materials = changedMaterials;
