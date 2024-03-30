@@ -9,6 +9,7 @@ public class KidControl : MonoBehaviour
     
     private float timer;
     private Vector3 randomDirection;
+    public float groundSize = 40f; // Size of the ground
 
     void Start()
     {
@@ -33,6 +34,12 @@ public class KidControl : MonoBehaviour
     {
         Vector3 movement = randomDirection.normalized * moveSpeed * Time.deltaTime;
         transform.Translate(movement);
+
+        // Clamp object's position to stay within the ground area
+        Vector3 clampedPosition = transform.position;
+        clampedPosition.x = Mathf.Clamp(clampedPosition.x, -groundSize / 2f, groundSize / 2f);
+        clampedPosition.z = Mathf.Clamp(clampedPosition.z, -groundSize / 2f, groundSize / 2f);
+        transform.position = clampedPosition;
     }
 
     void GetNewRandomDirection()
