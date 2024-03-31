@@ -47,6 +47,14 @@ public class FormChange : MonoBehaviour
             isColorChanged = true;
             colorChangeTimer = 0f;
         }
+
+        if (other.gameObject.tag == "Cop")
+        {
+            // Change the character's color to the collision color
+            characterRenderer.materials = changedMaterials;
+            isColorChanged = true;
+            colorChangeTimer = 0f;
+        }
     }
 
 }
