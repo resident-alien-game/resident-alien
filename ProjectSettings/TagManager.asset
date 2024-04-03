@@ -9,6 +9,7 @@ TagManager:
   - FBI
   - Obstacle
   - Alien
+  - Piece
   layers:
   - Default
   - TransparentFX

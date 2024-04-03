@@ -16,6 +16,7 @@ public class StatusManagement : MonoBehaviour
     int Energy = 5;
     int Score = 0;
     int Pieces = 0;
+    int TotalPieces;
 
     private void Awake()
     {
@@ -26,11 +27,11 @@ public class StatusManagement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        TotalPieces = GameObject.FindGameObjectsWithTag("Piece").Length;
         HPText.text = "HP: " + HP;
         EnergyText.text = "Energy: " + Energy;
         ScoreText.text = "Score: " + Score;
-        PiecesText.text = "Pieces: " + Pieces;
-        
+        PiecesText.text = "Pieces: " + Pieces + "/" + TotalPieces;
     }
 
     public void AddHP(int value)
@@ -66,6 +67,6 @@ public class StatusManagement : MonoBehaviour
     public void AddPieces(int value)
     {
         Pieces += value;
-        PiecesText.text = "Pieces: " + Pieces;
+        PiecesText.text = "Pieces: " + Pieces + "/" + TotalPieces;
     }
 }
