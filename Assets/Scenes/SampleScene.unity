@@ -755,7 +755,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: d18534fb4e15cbe498d5420706bfc8ff, type: 2}
+  - {fileID: 2100000, guid: fc7d29de74a4d3b4ab56fd3791eddba2, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3822,7 +3822,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4fc3d67e539b9de4691bf5f9fe1a23bc, type: 2}
+  - {fileID: 2100000, guid: d18534fb4e15cbe498d5420706bfc8ff, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -3880,9 +3880,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 70311fe90f0cba04e9e6a721d6bac49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  changedMaterials:
-  - {fileID: 2100000, guid: 2a629f55286d6af4383742efe7354d1d, type: 2}
   colorChangeDuration: 5
+  humanMaterials:
+  - {fileID: 2100000, guid: 4fc3d67e539b9de4691bf5f9fe1a23bc, type: 2}
 --- !u!114 &1535860921
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4429,9 +4429,10 @@ GameObject:
   - component: {fileID: 1922262351}
   - component: {fileID: 1922262350}
   - component: {fileID: 1922262349}
+  - component: {fileID: 1922262354}
   m_Layer: 0
   m_Name: Civilian
-  m_TagString: Untagged
+  m_TagString: Civilian
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4536,6 +4537,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1922262354
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1922262348}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.5, y: 1.5, z: 1.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1925609040
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4893,7 +4915,7 @@ Transform:
   m_GameObject: {fileID: 2048923568}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0.20944679, z: -0, w: 0.97782004}
-  m_LocalPosition: {x: 12.18, y: 2, z: 7.01}
+  m_LocalPosition: {x: 12.18, y: 1.5, z: 7.01}
   m_LocalScale: {x: 1, y: 2, z: 6}
   m_ConstrainProportionsScale: 0
   m_Children:
