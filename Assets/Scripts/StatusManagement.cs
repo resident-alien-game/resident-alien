@@ -12,7 +12,7 @@ public class StatusManagement : MonoBehaviour
     public TMP_Text ScoreText;
     public TMP_Text PiecesText;
 
-    int HP = 10;
+    int HP = 5;
     int Energy = 5;
     int Score = 0;
     int Pieces = 0;
@@ -54,7 +54,11 @@ public class StatusManagement : MonoBehaviour
 
     public void ReduceEnergy(int value)
     {
-        Energy -= value;
+        if (Energy > 0){
+            Energy -= value;
+        } else {
+            ReduceHP(value);
+        }
         EnergyText.text = "Energy: " + Energy;
     }
 
