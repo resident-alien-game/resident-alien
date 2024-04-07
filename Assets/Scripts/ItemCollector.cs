@@ -19,6 +19,8 @@ public class ItemCollector : MonoBehaviour
         {
             Destroy(other.gameObject);
             status.AddPieces(1);
+            status.AddScore(10);
+            status.ReduceEnergy(1);            
             collectPieceSound.Play();
         }
     }

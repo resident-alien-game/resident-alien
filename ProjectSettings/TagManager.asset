@@ -10,6 +10,7 @@ TagManager:
   - Obstacle
   - Alien
   - Piece
+  - Civilian
   layers:
   - Default
   - TransparentFX
