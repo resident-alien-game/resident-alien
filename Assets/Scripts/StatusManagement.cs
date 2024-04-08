@@ -71,6 +71,12 @@ public class StatusManagement : MonoBehaviour
         PiecesText.text = "Pieces: " + Pieces + "/" + TotalPieces;
     }
 
+    public void ReduceTotalPieces(int value)
+    {
+        TotalPieces -= value;
+        PiecesText.text = "Pieces: " + Pieces + "/" + TotalPieces;
+    }
+
     public bool CanUseSpell()
     {
         return Energy > 0;
