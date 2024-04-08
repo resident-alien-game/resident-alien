@@ -54,11 +54,8 @@ public class StatusManagement : MonoBehaviour
 
     public void ReduceEnergy(int value)
     {
-        if (Energy > 0){
-            Energy -= value;
-        } else {
-            ReduceHP(value);
-        }
+
+        Energy -= value;
         EnergyText.text = "Energy: " + Energy;
     }
 
@@ -74,7 +71,25 @@ public class StatusManagement : MonoBehaviour
         PiecesText.text = "Pieces: " + Pieces + "/" + TotalPieces;
     }
 
-    public bool CanUseSpell(){
+    public bool CanUseSpell()
+    {
         return Energy > 0;
     }
+
+    public bool CanEatFood()
+    {
+        return HP < 5;
+    }
+
+    public bool CanDrink()
+    {
+        return Energy < 5;
+    }
+
+    public bool IsGameOver()
+    {
+        return HP == 0;
+    }
+
+
 }
