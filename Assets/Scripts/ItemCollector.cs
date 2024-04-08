@@ -17,11 +17,36 @@ public class ItemCollector : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Piece"))
         {
-            Destroy(other.gameObject);
-            status.AddPieces(1);
-            status.AddScore(10);
-            status.ReduceEnergy(1);            
-            collectPieceSound.Play();
+            if (status.CanUseSpell())
+            {
+                Destroy(other.gameObject);
+                status.AddPieces(1);
+                status.AddScore(10);
+                status.ReduceEnergy(1);
+                collectPieceSound.Play();
+            }
+        }
+
+        if (other.gameObject.CompareTag("Food"))
+        {
+            if (status.CanEatFood())
+            {
+                Destroy(other.gameObject);
+                status.AddHP(1);
+                status.AddScore(20);
+                collectPieceSound.Play();
+            }
+        }
+
+        if (other.gameObject.CompareTag("Drink"))
+        {
+            if (status.CanDrink())
+            {
+                Destroy(other.gameObject);
+                status.AddEnergy(1);
+                status.AddScore(20);
+                collectPieceSound.Play();
+            }
         }
     }
 }

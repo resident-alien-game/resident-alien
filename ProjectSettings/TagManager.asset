@@ -11,6 +11,8 @@ TagManager:
   - Alien
   - Piece
   - Civilian
+  - Food
+  - Drink
   layers:
   - Default
   - TransparentFX
