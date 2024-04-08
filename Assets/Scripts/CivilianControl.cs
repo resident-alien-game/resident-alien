@@ -14,7 +14,8 @@ public class CivilianControl : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        x = gameObject.transform.position.x;
+        z = gameObject.transform.position.z;
     }
 
     // Update is called once per frame
@@ -23,11 +24,13 @@ public class CivilianControl : MonoBehaviour
         if (isMoving)
         {
 
-            if ((x > 5) || (x < 0))
+            if ((x > 3) || (x < -8))
             {
-                dirX = -dirX;
+                dirX = -dirX;              
             }
-            if ((z > 5) || (z < 0))
+
+
+            if ((z > -6) || (z < -16))
             {
                 dirZ = -dirZ;
             }
