@@ -9,6 +9,7 @@ public class PieceSpawn : MonoBehaviour
     public float groundSize = 100f;
 
     private List<Vector3> piecePositions = new List<Vector3>();
+    private List<GameObject> pieces = new List<GameObject>();
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class PieceSpawn : MonoBehaviour
         {
             Vector3 spawnPosition = GetValidRandomPosition();
             GameObject newPiece = Instantiate(piecePrefab, spawnPosition, Quaternion.identity);
+            pieces.Add(newPiece);
             piecePositions.Add(spawnPosition);
         }
     }
@@ -48,4 +50,22 @@ public class PieceSpawn : MonoBehaviour
         }
         return true;
     }
+
+    public List<Vector3> GetPiecePositions()
+    {
+        return piecePositions;
+    }
+
+    public GameObject GetPieceAtPosition(Vector3 position)
+    {
+        foreach (GameObject piece in pieces)
+        {
+            if (piece != null && piece.transform.position == position)
+            {
+                return piece;
+            }
+        }
+        return null;
+    }
+
 }
