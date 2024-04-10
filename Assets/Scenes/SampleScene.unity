@@ -1972,7 +1972,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2449627567512416453, guid: 718aeec5fbda4d842aa6c95851e08ca4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -42.890755
+      value: -41.6
       objectReference: {fileID: 0}
     - target: {fileID: 2449627567512416453, guid: 718aeec5fbda4d842aa6c95851e08ca4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2272,10 +2272,10 @@ GameObject:
   - component: {fileID: 1401609473}
   - component: {fileID: 1401609472}
   - component: {fileID: 1401609475}
-  - component: {fileID: 1401609476}
   - component: {fileID: 1401609478}
   - component: {fileID: 1401609480}
   - component: {fileID: 1401609479}
+  - component: {fileID: 1401609481}
   m_Layer: 0
   m_Name: Kid
   m_TagString: Kid
@@ -2369,21 +2369,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1401609476
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1401609470}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d7d80cfbcdd0634eae9d652536b8c88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  changeDirectionInterval: 2
-  groundSize: 100
 --- !u!114 &1401609478
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2443,6 +2428,19 @@ MonoBehaviour:
   agent: {fileID: 1401609479}
   range: 25
   transform: {fileID: 1401609474}
+--- !u!114 &1401609481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1401609470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5b6a162684653448e10397b3119896, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alien: {fileID: 1535860913}
 --- !u!1001 &1410769150
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2523,7 +2521,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2449627567512416453, guid: 718aeec5fbda4d842aa6c95851e08ca4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -5.9
+      value: 11.3
       objectReference: {fileID: 0}
     - target: {fileID: 2449627567512416453, guid: 718aeec5fbda4d842aa6c95851e08ca4, type: 3}
       propertyPath: m_LocalRotation.w
