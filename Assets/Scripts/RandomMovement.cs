@@ -9,12 +9,12 @@ public class RandomMovement : MonoBehaviour //don't forget to change the script 
     public NavMeshAgent agent;
     public float range; //radius of sphere
 
-    public Transform transform; //centre of the area the agent wants to move around in
+    //public Transform position; //centre of the area the agent wants to move around in
     //instead of centrePoint you can set it as the transform of the agent if you don't care about a specific area
 
     void Start()
     {
-        transform = gameObject.transform;
+        //position = gameObject.transform;
         agent = GetComponent<NavMeshAgent>();
     }
 
@@ -48,6 +48,4 @@ public class RandomMovement : MonoBehaviour //don't forget to change the script 
         result = Vector3.zero;
         return false;
     }
-
-    
 }
