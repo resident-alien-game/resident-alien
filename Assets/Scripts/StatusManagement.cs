@@ -18,8 +18,6 @@ public class StatusManagement : MonoBehaviour
     int Pieces = 0;
     int TotalPieces;
 
-    private bool isAlienDiscovered;
-
     private void Awake()
     {
         instance = this;
@@ -34,7 +32,6 @@ public class StatusManagement : MonoBehaviour
         EnergyText.text = "Energy: " + Energy;
         ScoreText.text = "Score: " + Score;
         PiecesText.text = "Pieces: " + Pieces + "/" + TotalPieces;
-        isAlienDiscovered = false;
     }
 
     public void AddHP(int value)
@@ -74,9 +71,6 @@ public class StatusManagement : MonoBehaviour
         PiecesText.text = "Pieces: " + Pieces + "/" + TotalPieces;
     }
 
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
     public void ReduceTotalPieces(int value)
     {
         TotalPieces -= value;
@@ -102,22 +96,4 @@ public class StatusManagement : MonoBehaviour
     {
         return HP == 0;
     }
-
-
-=======
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-    public void setAlienIsDiscovered(bool value)
-    {
-        isAlienDiscovered = value;
-    }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 }
