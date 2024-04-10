@@ -48,4 +48,8 @@ public class CivilianControl : MonoBehaviour
     {
         isMoving = false;
     }
+
+    public bool isDead(){
+        return !isMoving;
+    }
 }

@@ -26,7 +26,7 @@ public class FormChange : MonoBehaviour
     {
         characterRenderer = GetComponent<Renderer>();
         allienMaterials = characterRenderer.materials;
-        status = GameObject.Find("Status").GetComponent<StatusManagement>();
+        status = GameObject.FindObjectOfType<StatusManagement>();
     }
 
     void Update()
@@ -60,9 +60,10 @@ public class FormChange : MonoBehaviour
                 if (civilian != null && status.CanUseSpell())
                 {
                     civilian.GotKilled();
+                    status.AddScore(10);
+                    status.ReduceEnergy(1);
                 }
-                status.AddScore(10);
-                status.ReduceEnergy(1);
+                
                 targetCivilian = null;
             }
 
@@ -75,6 +76,11 @@ public class FormChange : MonoBehaviour
             isAlien = true;
             formChangeTimer = 0f;
         }
+    }
+
+    public bool isAlienForm()
+    {
+        return isAlien;
     }
 
 }
