@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -68,13 +69,23 @@ public class FormChange : MonoBehaviour
 
         }
         // Check if the collision involves the character
-        if (other.gameObject.tag == "Kid")
+        /*if (other.gameObject.tag == "Kid")
         {
             // Change the character's color to the collision color
             characterRenderer.materials = allienMaterials;
             isAlien = true;
             formChangeTimer = 0f;
-        }
+        }*/
+    }
+
+    // The script is being called from "KidControl.cs" script when the alien is in the kid's field of view.
+    public void Discovered()
+    {
+        // Change the character's color to the collision color
+        characterRenderer.materials = allienMaterials;
+        isAlien = true;
+        formChangeTimer = 0f;
+        Debug.Log("Discovered");
     }
 
 }

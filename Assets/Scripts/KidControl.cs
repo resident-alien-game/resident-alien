@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,12 +10,18 @@ public class KidControl : MonoBehaviour
     
     private float timer;
     private Vector3 randomDirection;
-    public float groundSize = 40f; // Size of the ground
+    public float groundSize = 100f; // Size of the ground
+
+    private FieldOfView fieldOfView;
+    private FormChange formChange;
+
 
     void Start()
     {
         timer = changeDirectionInterval;
         GetNewRandomDirection();
+        fieldOfView = GetComponent<FieldOfView>();
+        formChange = GameObject.Find("Alien").GetComponent<FormChange>();
     }
 
     void Update()
@@ -28,11 +35,20 @@ public class KidControl : MonoBehaviour
         }
 
         Move();
+
+        // Check to see if alien is being seen by a kid. If so, set alien as discovered.
+        if (fieldOfView.canSeePlayer)
+            formChange.Discovered();
     }
 
     void Move()
     {
         Vector3 movement = randomDirection.normalized * moveSpeed * Time.deltaTime;
+
+        // Face the direction
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(movement.x, 0, movement.z));
+        transform.rotation = Quaternion.Slerp(transform.rotation, lookRotation, Time.deltaTime * 5f);
+
         transform.Translate(movement);
 
         // Clamp object's position to stay within the ground area
@@ -44,6 +60,6 @@ public class KidControl : MonoBehaviour
 
     void GetNewRandomDirection()
     {
-        randomDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized;
+        randomDirection = new Vector3(UnityEngine.Random.Range(-1f, 1f), 0f, UnityEngine.Random.Range(-1f, 1f)).normalized;
     }
 }

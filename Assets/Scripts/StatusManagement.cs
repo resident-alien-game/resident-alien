@@ -96,6 +96,4 @@ public class StatusManagement : MonoBehaviour
     {
         return HP == 0;
     }
-
-
 }
