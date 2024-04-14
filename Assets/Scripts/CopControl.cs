@@ -4,46 +4,56 @@ using UnityEngine;
 
 public class CopControl : MonoBehaviour
 {
-    public float moveSpeed = 3f;
-    public float changeDirectionInterval = 2f;
-    
-    private float timer;
-    private Vector3 randomDirection;
-    public float groundSize = 40f; // Size of the ground
+    private FormChange formChange;
+    private FieldOfView fieldOfView;
+    [SerializeField]
+    private GameObject alien;
+    public UnityEngine.AI.NavMeshAgent agent;
+    public float range; //radius of sphere
 
     void Start()
     {
-        timer = changeDirectionInterval;
-        GetNewRandomDirection();
+        fieldOfView = GetComponent<FieldOfView>();
+        formChange = alien.GetComponent<FormChange>();
+        //position = gameObject.transform;
+        agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
     void Update()
     {
-        timer -= Time.deltaTime;
-
-        if (timer <= 0f)
+        if (fieldOfView.canSeePlayer && formChange.isAlien)
+            Chase();
+        else if (agent.remainingDistance <= agent.stoppingDistance) //done with path
         {
-            GetNewRandomDirection();
-            timer = changeDirectionInterval;
+            Vector3 point;
+            if (RandomPoint(transform.position, range, out point)) //pass in our centre point and radius of area
+            {
+                Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
+                agent.SetDestination(point);
+            }
+        }
+    }
+
+    private void Chase()
+    {
+        transform.LookAt(alien.transform);
+        transform.position += transform.forward * 6 * Time.deltaTime;
+    }
+
+    bool RandomPoint(Vector3 center, float range, out Vector3 result)
+    {
+
+        Vector3 randomPoint = center + Random.insideUnitSphere * range; //random point in a sphere 
+        UnityEngine.AI.NavMeshHit hit;
+        if (UnityEngine.AI.NavMesh.SamplePosition(randomPoint, out hit, 1.0f, UnityEngine.AI.NavMesh.AllAreas)) //documentation: https://docs.unity3d.com/ScriptReference/AI.NavMesh.SamplePosition.html
+        { 
+            //the 1.0f is the max distance from the random point to a point on the navmesh, might want to increase if range is big
+            //or add a for loop like in the documentation
+            result = hit.position;
+            return true;
         }
 
-        Move();
-    }
-
-    void Move()
-    {
-        Vector3 movement = randomDirection.normalized * moveSpeed * Time.deltaTime;
-        transform.Translate(movement);
-
-        // Clamp object's position to stay within the ground area
-        Vector3 clampedPosition = transform.position;
-        clampedPosition.x = Mathf.Clamp(clampedPosition.x, -groundSize / 2f, groundSize / 2f);
-        clampedPosition.z = Mathf.Clamp(clampedPosition.z, -groundSize / 2f, groundSize / 2f);
-        transform.position = clampedPosition;
-    }
-
-    void GetNewRandomDirection()
-    {
-        randomDirection = new Vector3(Random.Range(-1f, 1f), 0f, Random.Range(-1f, 1f)).normalized;
+        result = Vector3.zero;
+        return false;
     }
 }

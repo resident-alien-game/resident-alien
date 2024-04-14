@@ -295,8 +295,8 @@ GameObject:
   - component: {fileID: 169863765}
   - component: {fileID: 169863764}
   - component: {fileID: 169863768}
-  - component: {fileID: 169863770}
   - component: {fileID: 169863769}
+  - component: {fileID: 169863771}
   m_Layer: 0
   m_Name: Cop
   m_TagString: Cop
@@ -434,7 +434,7 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &169863770
+--- !u!114 &169863771
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -443,9 +443,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 169863761}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8e879f34f70c19458b2e6bebee2ca05, type: 3}
+  m_Script: {fileID: 11500000, guid: c612c7da949aa4445a1dcc5a4fa385a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  alien: {fileID: 1535860913}
   agent: {fileID: 169863769}
   range: 50
 --- !u!1 &170187342
@@ -461,7 +462,7 @@ GameObject:
   - component: {fileID: 170187348}
   - component: {fileID: 170187347}
   - component: {fileID: 170187346}
-  - component: {fileID: 170187345}
+  - component: {fileID: 170187350}
   - component: {fileID: 170187344}
   m_Layer: 0
   m_Name: Cop (1)
@@ -507,20 +508,6 @@ NavMeshAgent:
   m_BaseOffset: 0.5
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &170187345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 170187342}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8e879f34f70c19458b2e6bebee2ca05, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 170187344}
-  range: 50
 --- !u!114 &170187346
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,6 +601,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 170187342}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &170187350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 170187342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c612c7da949aa4445a1dcc5a4fa385a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alien: {fileID: 1535860913}
+  agent: {fileID: 170187344}
+  range: 50
 --- !u!1 &277587938
 GameObject:
   m_ObjectHideFlags: 0
@@ -984,6 +986,7 @@ GameObject:
   - component: {fileID: 379088627}
   - component: {fileID: 379088626}
   - component: {fileID: 379088625}
+  - component: {fileID: 379088630}
   - component: {fileID: 379088624}
   m_Layer: 0
   m_Name: Cop (2)
@@ -1136,6 +1139,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 379088622}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &379088630
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 379088622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c612c7da949aa4445a1dcc5a4fa385a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  alien: {fileID: 1535860913}
+  agent: {fileID: 379088624}
+  range: 50
 --- !u!1 &412491567
 GameObject:
   m_ObjectHideFlags: 0
@@ -4806,6 +4824,7 @@ MonoBehaviour:
   colorChangeDuration: 5
   humanMaterials:
   - {fileID: 2100000, guid: 4fc3d67e539b9de4691bf5f9fe1a23bc, type: 2}
+  isAlien: 0
 --- !u!114 &1535860921
 MonoBehaviour:
   m_ObjectHideFlags: 0
