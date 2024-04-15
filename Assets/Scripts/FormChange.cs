@@ -13,7 +13,7 @@ public class FormChange : MonoBehaviour
     // Original color of the character
     public Material[] humanMaterials;
     private Renderer characterRenderer;
-    private bool isAlien = false;
+    public bool isAlien = true;
     private bool hasHumanForm = false;
     private float formChangeTimer = 0f;
 
