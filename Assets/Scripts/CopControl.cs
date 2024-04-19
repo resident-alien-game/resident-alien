@@ -6,27 +6,46 @@ public class CopControl : MonoBehaviour
 {
     private FormChange formChange;
     private FieldOfView fieldOfView;
-    [SerializeField]
-    private GameObject alien;
+    private bool alreadyAttacked;
+    private GameObject bullet;
+
+    public GameObject alien;
     public UnityEngine.AI.NavMeshAgent agent;
-    public float range; //radius of sphere
+    public float walkRange; //radius of sphere
+    public float patrolSpeed = 3.0f;
+    public float chaseSpeed = 6.0f;
+    public float attackRange = 15.0f;
+    public float reloadTime; // time to reload a gun (time between attacks)
 
     void Start()
     {
         fieldOfView = GetComponent<FieldOfView>();
         formChange = alien.GetComponent<FormChange>();
-        //position = gameObject.transform;
+        alreadyAttacked = false;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
 
     void Update()
     {
         if (fieldOfView.canSeePlayer && formChange.isAlien)
-            Chase();
-        else if (agent.remainingDistance <= agent.stoppingDistance) //done with path
+        {
+            if (Vector3.Distance(transform.position, alien.transform.position) <= attackRange)
+                Attack();
+            else
+                Chase();
+        }
+        else
+            Patrol();
+    }
+
+    private void Patrol()
+    {
+        agent.speed = patrolSpeed;
+
+        if (agent.remainingDistance <= agent.stoppingDistance) //done with path
         {
             Vector3 point;
-            if (RandomPoint(transform.position, range, out point)) //pass in our centre point and radius of area
+            if (RandomPoint(transform.position, walkRange, out point)) //pass in our centre point and radius of area
             {
                 Debug.DrawRay(point, Vector3.up, Color.blue, 1.0f); //so you can see with gizmos
                 agent.SetDestination(point);
@@ -36,8 +55,31 @@ public class CopControl : MonoBehaviour
 
     private void Chase()
     {
+        /*transform.LookAt(alien.transform);
+        transform.position += transform.forward * 6 * Time.deltaTime;*/
+        agent.SetDestination(alien.transform.position);
+        agent.speed = chaseSpeed;
+    }
+
+    private void Attack()
+    {
+        // Stop moving when attacking
+        agent.SetDestination(transform.position);
         transform.LookAt(alien.transform);
-        transform.position += transform.forward * 6 * Time.deltaTime;
+
+        if (!alreadyAttacked)
+        {
+            // Shoot a bullet
+            //Rigidbody rb = Instantiate(bullet, transform.position, Quaternion.identity);
+
+            alreadyAttacked = true;
+            Invoke(nameof(ResetAttack), reloadTime);
+        }
+    }
+
+    private void ResetAttack()
+    {
+        alreadyAttacked = false;
     }
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)

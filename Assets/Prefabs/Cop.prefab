@@ -166,4 +166,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   alien: {fileID: 0}
   agent: {fileID: 2371821705445683361}
-  range: 50
+  walkRange: 40
+  attackRange: 15
+  reloadTime: 0
