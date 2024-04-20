@@ -15,6 +15,7 @@ public class FormChange : MonoBehaviour
     public Material[] humanMaterials;
     private Renderer characterRenderer;
     public bool isAlien = true;
+    public AudioSource audioSource;
     private bool hasHumanForm = false;
     private float formChangeTimer = 0f;
 
@@ -69,6 +70,7 @@ public class FormChange : MonoBehaviour
             }
         } else if (other.gameObject.tag == "Bullet")
         {
+            audioSource.Play();
             status.ReduceHP(1);
             Destroy(other.gameObject);
         }
