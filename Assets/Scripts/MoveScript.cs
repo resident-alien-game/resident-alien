@@ -72,7 +72,7 @@ public class MoveScript : MonoBehaviour
         // Extract the rigidbody of the object you collided with
         Rigidbody rb = hit.collider.attachedRigidbody;
 
-        if (rb !=null){
+        if (rb !=null) {
 
             // calculate the force direction as the difference in position between you
             // and the object you collided with

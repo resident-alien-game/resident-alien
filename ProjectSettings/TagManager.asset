@@ -14,6 +14,7 @@ TagManager:
   - Food
   - Drink
   - House
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -25,7 +26,6 @@ TagManager:
   - Alien
   - House
   - Piece
-  - 
   - 
   - 
   - 
