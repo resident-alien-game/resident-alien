@@ -8,14 +8,16 @@ public class CopControl : MonoBehaviour
     private FieldOfView fieldOfView;
     private bool alreadyAttacked;
     private GameObject bullet;
+    private GunControl gunControl;
 
+    public GameObject gun;
     public GameObject alien;
     public UnityEngine.AI.NavMeshAgent agent;
     public float walkRange; //radius of sphere
     public float patrolSpeed = 3.0f;
     public float chaseSpeed = 6.0f;
     public float attackRange = 15.0f;
-    public float reloadTime; // time to reload a gun (time between attacks)
+    public float reloadTime = 2.0f; // time to reload a gun (time between attacks)
 
     void Start()
     {
@@ -23,6 +25,7 @@ public class CopControl : MonoBehaviour
         formChange = alien.GetComponent<FormChange>();
         alreadyAttacked = false;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        gunControl = gun.GetComponent<GunControl>();
     }
 
     void Update()
@@ -55,8 +58,6 @@ public class CopControl : MonoBehaviour
 
     private void Chase()
     {
-        /*transform.LookAt(alien.transform);
-        transform.position += transform.forward * 6 * Time.deltaTime;*/
         agent.SetDestination(alien.transform.position);
         agent.speed = chaseSpeed;
     }
@@ -69,9 +70,7 @@ public class CopControl : MonoBehaviour
 
         if (!alreadyAttacked)
         {
-            // Shoot a bullet
-            //Rigidbody rb = Instantiate(bullet, transform.position, Quaternion.identity);
-
+            gunControl.Shoot();
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), reloadTime);
         }

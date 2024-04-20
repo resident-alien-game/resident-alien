@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -66,7 +67,10 @@ public class FormChange : MonoBehaviour
                 status.ReduceEnergy(1);
                 targetCivilian = null;
             }
-
+        } else if (other.gameObject.tag == "Bullet")
+        {
+            status.ReduceHP(1);
+            Destroy(other.gameObject);
         }
         // Check if the collision involves the character
         /*if (other.gameObject.tag == "Kid")
