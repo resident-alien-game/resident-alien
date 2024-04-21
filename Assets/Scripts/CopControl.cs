@@ -10,6 +10,8 @@ public class CopControl : MonoBehaviour
     private GameObject alien;
     public UnityEngine.AI.NavMeshAgent agent;
     public float range; //radius of sphere
+    private float speed; //speed of cop
+    public bool shouldChase = false;
 
     void Start()
     {
@@ -22,7 +24,14 @@ public class CopControl : MonoBehaviour
     void Update()
     {
         if (fieldOfView.canSeePlayer && formChange.isAlien)
+        {
+            speed = 7;
             Chase();
+        }
+        else if (shouldChase){
+            speed = 6;
+            Chase();
+        }
         else if (agent.remainingDistance <= agent.stoppingDistance) //done with path
         {
             Vector3 point;
@@ -37,7 +46,7 @@ public class CopControl : MonoBehaviour
     private void Chase()
     {
         transform.LookAt(alien.transform);
-        transform.position += transform.forward * 6 * Time.deltaTime;
+        transform.position += transform.forward * speed * Time.deltaTime;
     }
 
     bool RandomPoint(Vector3 center, float range, out Vector3 result)
