@@ -12,6 +12,7 @@ public class CivilianControl : MonoBehaviour
     public NavMeshAgent agent;
     public float range = 2; //radius of sphere
     private Vector3 targetPoint;
+    private List<CopControl> copControls;
 
     private void Start()
     {
@@ -23,12 +24,14 @@ public class CivilianControl : MonoBehaviour
             targetPoint = GetRandomPoint(assignedHouse.transform.position, range);
             agent.SetDestination(targetPoint);
         }
+        copControls = new List<CopControl>(FindObjectsOfType<CopControl>());
     }
 
     private void Update()
     {
         if (isDead)
         {
+            SetCopDeathChase(true);
             return;
         }
         if(!agent.pathPending && agent.remainingDistance < 0.1f)
@@ -53,5 +56,13 @@ public class CivilianControl : MonoBehaviour
         NavMeshHit hit;
         NavMesh.SamplePosition(randomPoint, out hit, range, NavMesh.AllAreas); //documentation: https://docs.unity3d.com/ScriptReference/AI.NavMesh.SamplePosition.html
         return hit.position;
+    }
+
+    private void SetCopDeathChase(bool deathChase)
+    {
+        foreach (CopControl copControl in copControls)
+        {
+            copControl.deathChase = deathChase;
+        }
     }
 }
