@@ -12,6 +12,7 @@ public class CopControl : MonoBehaviour
     public float range; //radius of sphere
     private float speed; //speed of cop
     public bool shouldChase = false;
+    public bool deathChase = false;
 
     void Start()
     {
@@ -28,8 +29,13 @@ public class CopControl : MonoBehaviour
             speed = 7;
             Chase();
         }
-        else if (shouldChase){
-            speed = 6;
+        else if (shouldChase && !deathChase){
+            speed = 4;
+            Chase();
+        }
+        else if (deathChase)
+        {
+            speed = 5;
             Chase();
         }
         else if (agent.remainingDistance <= agent.stoppingDistance) //done with path
