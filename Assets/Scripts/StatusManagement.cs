@@ -29,8 +29,9 @@ public class StatusManagement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (gameOverPanel != null) { 
-            gameOverPanel.SetActive(false); 
+        if (gameOverPanel != null)
+        {
+            gameOverPanel.SetActive(false);
         }
         TotalPieces = GameObject.FindGameObjectsWithTag("Piece").Length;
         HPText.text = "HP: " + HP;
@@ -50,7 +51,8 @@ public class StatusManagement : MonoBehaviour
     {
         HP -= value;
         HPText.text = "HP: " + HP;
-        if (IsGameOver()) {
+        if (IsGameOver())
+        {
             GameOver();
         }
     }
@@ -66,10 +68,6 @@ public class StatusManagement : MonoBehaviour
 
         Energy -= value;
         EnergyText.text = "Energy: " + Energy;
-        if (IsGameOver())
-        {
-            GameOver();
-        }
     }
 
     public void AddScore(int value)
@@ -88,6 +86,10 @@ public class StatusManagement : MonoBehaviour
     {
         TotalPieces -= value;
         PiecesText.text = "Pieces: " + Pieces + "/" + TotalPieces;
+        if (IsGameOver())
+        {
+            GameOver();
+        }
     }
 
     public bool CanUseSpell()
@@ -107,10 +109,11 @@ public class StatusManagement : MonoBehaviour
 
     public bool IsGameOver()
     {
-        return HP == 0 || Energy == 0;
+        return HP == 0 || TotalPieces == 3;
     }
 
-    public void GameOver() {
+    public void GameOver()
+    {
         if (gameOverPanel != null)
         {
             gameOverPanel.SetActive(true);

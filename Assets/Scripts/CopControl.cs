@@ -18,6 +18,8 @@ public class CopControl : MonoBehaviour
     public float chaseSpeed = 6.0f;
     public float attackRange = 15.0f;
     public float reloadTime = 2.0f; // time to reload a gun (time between attacks)
+    public bool shouldChase = false;
+    public bool deathChase = false;
 
     void Start()
     {
@@ -31,6 +33,16 @@ public class CopControl : MonoBehaviour
     void Update()
     {
         if (fieldOfView.canSeePlayer && formChange.isAlien)
+        {
+            if (Vector3.Distance(transform.position, alien.transform.position) <= attackRange)
+                Attack();
+            else
+                Chase();
+        }  else if (shouldChase && !deathChase){
+                chaseSpeed = 4.0f;
+                Chase();
+        }
+        else if (deathChase)
         {
             if (Vector3.Distance(transform.position, alien.transform.position) <= attackRange)
                 Attack();
