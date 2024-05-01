@@ -6,18 +6,18 @@ using UnityEngine.AI;
 public class CivilianControl : MonoBehaviour
 {
     private NavMeshAgent navMeshAgent;
-    private RandomMovement randomMovement;
+    //private RandomMovement randomMovement;
     public bool isDead = false;
     public GameObject assignedHouse;
     public NavMeshAgent agent;
-    public float range = 2; //radius of sphere
+    public float range = 10; //radius of sphere
     private Vector3 targetPoint;
     private List<CopControl> copControls;
 
     private void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        randomMovement = GetComponent<RandomMovement>();
+        //randomMovement = GetComponent<RandomMovement>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         if (assignedHouse != null)
         {

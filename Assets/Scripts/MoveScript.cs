@@ -17,7 +17,7 @@ using UnityEngine;
 public class MoveScript : MonoBehaviour
 {
         public float walkSpeed = 5; // How fast you walk
-        public float jumpSpeed = 10; // How fast you jump
+        public float jumpSpeed = 5; // How fast you jump
         public float forceMagnitude=10; // Used when pushing against an object
         public int allowableJumps = 1; // Determine how many jumps allowed at a time
         private int jumpCount=0;

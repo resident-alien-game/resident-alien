@@ -15,7 +15,7 @@ public class CopControl : MonoBehaviour
     public UnityEngine.AI.NavMeshAgent agent;
     public float walkRange; //radius of sphere
     public float patrolSpeed = 3.0f;
-    public float chaseSpeed = 6.0f;
+    public float chaseSpeed = 4.0f;
     public float attackRange = 15.0f;
     public float reloadTime = 2.0f; // time to reload a gun (time between attacks)
     public bool shouldChase = false;
@@ -31,26 +31,37 @@ public class CopControl : MonoBehaviour
     }
 
     void Update()
-    {
+    {        
         if (fieldOfView.canSeePlayer && formChange.isAlien)
         {
-            if (Vector3.Distance(transform.position, alien.transform.position) <= attackRange)
+            if (Vector3.Distance(transform.position, alien.transform.position) <= attackRange && formChange.isAlien)
+            {   
                 Attack();
+            }
             else
+            {
                 Chase();
-        }  else if (shouldChase && !deathChase){
-                chaseSpeed = 4.0f;
-                Chase();
+            }
+        }
+        else if (shouldChase && !deathChase)
+        {
+            Chase();
         }
         else if (deathChase)
         {
             if (Vector3.Distance(transform.position, alien.transform.position) <= attackRange)
+            {
                 Attack();
+            }
             else
+            {
                 Chase();
+            }
         }
         else
+        {
             Patrol();
+        }
     }
 
     private void Patrol()
@@ -99,7 +110,7 @@ public class CopControl : MonoBehaviour
         Vector3 randomPoint = center + Random.insideUnitSphere * range; //random point in a sphere 
         UnityEngine.AI.NavMeshHit hit;
         if (UnityEngine.AI.NavMesh.SamplePosition(randomPoint, out hit, 1.0f, UnityEngine.AI.NavMesh.AllAreas)) //documentation: https://docs.unity3d.com/ScriptReference/AI.NavMesh.SamplePosition.html
-        { 
+        {
             //the 1.0f is the max distance from the random point to a point on the navmesh, might want to increase if range is big
             //or add a for loop like in the documentation
             result = hit.position;
