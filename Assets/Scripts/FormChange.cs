@@ -7,13 +7,9 @@ using UnityEngine.UI;
 
 public class FormChange : MonoBehaviour
 {
-    // The color to change to when colliding with something
-    private Material[] allienMaterials;
     public float colorChangeDuration = 10f;
 
     // Original color of the character
-    public Material[] humanMaterials;
-    private Renderer characterRenderer;
     public bool isAlien = true;
     public AudioSource audioSource;
     private bool hasHumanForm = false;
@@ -22,14 +18,15 @@ public class FormChange : MonoBehaviour
     private StatusManagement status;
     private GameObject targetCivilian;
     private CivilianControl civilian;
-
+    private ChangeManager changeManager;
+    public GameObject change;
+    public GameObject statusManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        characterRenderer = GetComponent<Renderer>();
-        allienMaterials = characterRenderer.materials;
-        status = GameObject.Find("Status").GetComponent<StatusManagement>();
+        status = statusManager.GetComponent<StatusManagement>();
+        changeManager = change.GetComponent<ChangeManager>();
     }
 
     void Update()
@@ -40,7 +37,7 @@ public class FormChange : MonoBehaviour
             formChangeTimer += Time.deltaTime;
             if (formChangeTimer >= colorChangeDuration)
             {
-                characterRenderer.materials = humanMaterials;
+                changeManager.changeToHuman = true;
                 isAlien = false;
                 formChangeTimer = 0f;
             }
@@ -55,7 +52,6 @@ public class FormChange : MonoBehaviour
             if (!hasHumanForm)
             {
                 targetCivilian = other.gameObject;
-                characterRenderer.materials = humanMaterials;
                 isAlien = false;
                 hasHumanForm = true;
 
@@ -63,12 +59,16 @@ public class FormChange : MonoBehaviour
                 if (civilian != null && status.CanUseSpell())
                 {
                     civilian.GotKilled();
+
+                    changeManager.changeToHuman = true;
+
                 }
                 status.AddScore(10);
                 status.ReduceEnergy(1);
                 targetCivilian = null;
             }
-        } else if (other.gameObject.tag == "Bullet")
+        }
+        else if (other.gameObject.tag == "Bullet")
         {
             audioSource.Play();
             status.ReduceHP(1);
@@ -88,10 +88,9 @@ public class FormChange : MonoBehaviour
     public void Discovered()
     {
         // Change the character's color to the collision color
-        characterRenderer.materials = allienMaterials;
+        changeManager.changeToAlien = true;
         isAlien = true;
         formChangeTimer = 0f;
-        Debug.Log("Discovered");
-    }
 
+    }
 }

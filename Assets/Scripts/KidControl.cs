@@ -14,6 +14,7 @@ public class KidControl : MonoBehaviour
 
     private FieldOfView fieldOfView;
     private FormChange formChange;
+    public GameObject alien;
 
 
     void Start()
@@ -21,7 +22,7 @@ public class KidControl : MonoBehaviour
         timer = changeDirectionInterval;
         GetNewRandomDirection();
         fieldOfView = GetComponent<FieldOfView>();
-        formChange = GameObject.Find("Alien").GetComponent<FormChange>();
+        formChange = alien.GetComponent<FormChange>();
     }
 
     void Update()
