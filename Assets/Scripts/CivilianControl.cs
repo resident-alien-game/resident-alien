@@ -13,6 +13,7 @@ public class CivilianControl : MonoBehaviour
     public float range = 10; //radius of sphere
     private Vector3 targetPoint;
     private List<CopControl> copControls;
+    Animator anim;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class CivilianControl : MonoBehaviour
             agent.SetDestination(targetPoint);
         }
         copControls = new List<CopControl>(FindObjectsOfType<CopControl>());
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -38,6 +40,7 @@ public class CivilianControl : MonoBehaviour
         {
             targetPoint = GetRandomPoint(assignedHouse.transform.position, range);
             agent.SetDestination(targetPoint);
+            anim.SetBool("isWalking", true);
         }
     }
 
@@ -48,6 +51,7 @@ public class CivilianControl : MonoBehaviour
         navMeshAgent.velocity = Vector3.zero;
         agent.isStopped = true;
         isDead = true;
+        anim.SetBool("isDead", true);
     }
 
     private Vector3 GetRandomPoint(Vector3 center, float range)
