@@ -7,11 +7,12 @@ public class ItemCollector : MonoBehaviour
 {
     [SerializeField] private AudioSource collectPieceSound;
     private StatusManagement status;
+    public GameObject statusManager;
     private List<CopControl> copControls;
 
     private void Start()
     {
-        status = GameObject.Find("Status").GetComponent<StatusManagement>();
+        status = statusManager.GetComponent<StatusManagement>();
         copControls = new List<CopControl>(FindObjectsOfType<CopControl>());
     }
 

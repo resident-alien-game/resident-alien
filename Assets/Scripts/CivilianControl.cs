@@ -2,22 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Interfaces;
 
-public class CivilianControl : MonoBehaviour
+public class CivilianControl : MonoBehaviour, IAttackable
 {
     private NavMeshAgent navMeshAgent;
-    private RandomMovement randomMovement;
+    //private RandomMovement randomMovement;
     public bool isDead = false;
     public GameObject assignedHouse;
     public NavMeshAgent agent;
-    public float range = 2; //radius of sphere
+    public float range = 10; //radius of sphere
     private Vector3 targetPoint;
     private List<CopControl> copControls;
+    Animator anim;
 
     private void Start()
     {
         navMeshAgent = GetComponent<NavMeshAgent>();
-        randomMovement = GetComponent<RandomMovement>();
+        //randomMovement = GetComponent<RandomMovement>();
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         if (assignedHouse != null)
         {
@@ -25,6 +27,7 @@ public class CivilianControl : MonoBehaviour
             agent.SetDestination(targetPoint);
         }
         copControls = new List<CopControl>(FindObjectsOfType<CopControl>());
+        anim = GetComponent<Animator>();
     }
 
     private void Update()
@@ -38,6 +41,7 @@ public class CivilianControl : MonoBehaviour
         {
             targetPoint = GetRandomPoint(assignedHouse.transform.position, range);
             agent.SetDestination(targetPoint);
+            anim.SetBool("isWalking", true);
         }
     }
 
@@ -48,6 +52,12 @@ public class CivilianControl : MonoBehaviour
         navMeshAgent.velocity = Vector3.zero;
         agent.isStopped = true;
         isDead = true;
+        anim.SetBool("isDead", true);
+    }
+
+    public void Attack()
+    {
+        GotKilled();
     }
 
     private Vector3 GetRandomPoint(Vector3 center, float range)

@@ -7,14 +7,17 @@ public class KidManager : MonoBehaviour
 
     private FieldOfView fieldOfView;
     private FormChange formChange;
-    [SerializeField]
-    private GameObject alien;
+    public GameObject alien;
+    public GameObject human;
 
     // Start is called before the first frame update
     void Start()
     {
         fieldOfView = GetComponent<FieldOfView>();
-        formChange = alien.GetComponent<FormChange>();
+        if (alien != null)
+            formChange = alien.GetComponent<FormChange>();
+        else
+            formChange = human.GetComponent<FormChange>();
     }
 
     // Update is called once per frame
