@@ -12,6 +12,7 @@ public class FBIControl : MonoBehaviour
     private NavMeshAgent agent;
     private FBIFieldOfView fov;
     private bool collectingPiece;
+    private Animator anim;
 
     void Start()
     {
@@ -19,6 +20,7 @@ public class FBIControl : MonoBehaviour
         fov = GetComponent<FBIFieldOfView>();
         status = statusManager.GetComponent<StatusManagement>();
         collectingPiece = false;
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -29,6 +31,7 @@ public class FBIControl : MonoBehaviour
         }
         else if (agent.remainingDistance <= agent.stoppingDistance) //done with path, so go to a new random direction.
         {
+            anim.SetBool("isWalking", true);
             Vector3 point;
             if (RandomPoint(transform.position, range, out point)) //pass in our centre point and radius of area
             {
@@ -43,12 +46,23 @@ public class FBIControl : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Piece"))
         {
-            Destroy(other.gameObject);
-            status.ReduceTotalPieces(1);
-            //fov.targetTransform = null;
-            collectingPiece = false;
-            //agent.ResetPath();
+            StartCoroutine(Collecting(other.gameObject));
         }
+    }
+
+    private IEnumerator Collecting(GameObject piece)
+    {
+        collectingPiece = true;
+        anim.SetBool("isWalking", false);
+        agent.isStopped = true;
+
+        yield return new WaitForSeconds(2.0f);
+
+        Destroy(piece);
+        status.ReduceTotalPieces(1);
+        collectingPiece = false;
+        agent.isStopped = false;
+        anim.SetBool("isWalking", true);
     }
 
     private void CollectPiece()
