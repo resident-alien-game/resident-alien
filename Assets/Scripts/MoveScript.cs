@@ -24,12 +24,15 @@ public class MoveScript : MonoBehaviour
     Animator anim;
     private CharacterController controller;
     private float ySpeed;   // Stores the y speed for jumping and falling
+    private Attack attack;
+
 
     // Start is called before the first frame update
     void Start()
     {
         controller = gameObject.GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
+        attack = GetComponent<Attack>();
     }
 
     // Update is called once per frame
@@ -76,6 +79,16 @@ public class MoveScript : MonoBehaviour
             // Move the character controller
             controller.Move(move * Time.deltaTime);
             anim.SetBool("isRuning", inputMove.magnitude > 0);
+            if (Input.GetMouseButtonDown(0)) {
+                if (attack != null){
+                    attack.OnAttack();
+                } else {
+                    anim.SetBool("isAttack", true);
+                }
+            }
+            if (Input.GetMouseButtonUp(0)) {
+                anim.SetBool("isAttack", false);
+            }
         }
     }
     // If you collide with something, push it with a force.

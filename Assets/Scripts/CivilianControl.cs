@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using Interfaces;
 
-public class CivilianControl : MonoBehaviour
+public class CivilianControl : MonoBehaviour, IAttackable
 {
     private NavMeshAgent navMeshAgent;
     //private RandomMovement randomMovement;
@@ -52,6 +53,11 @@ public class CivilianControl : MonoBehaviour
         agent.isStopped = true;
         isDead = true;
         anim.SetBool("isDead", true);
+    }
+
+    public void Attack()
+    {
+        GotKilled();
     }
 
     private Vector3 GetRandomPoint(Vector3 center, float range)

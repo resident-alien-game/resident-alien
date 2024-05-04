@@ -12,7 +12,7 @@ public class FormChange : MonoBehaviour
     // Original color of the character
     public bool isAlien = true;
     public AudioSource audioSource;
-    private bool hasHumanForm = false;
+    public bool hasHumanForm = false;
     private float formChangeTimer = 0f;
 
     private StatusManagement status;
@@ -46,6 +46,7 @@ public class FormChange : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        /*
         if (other.gameObject.tag == "Civilian")
         {
             // kill the civilian and change into human form
@@ -68,7 +69,8 @@ public class FormChange : MonoBehaviour
                 targetCivilian = null;
             }
         }
-        else if (other.gameObject.tag == "Bullet")
+        */
+        if (other.gameObject.tag == "Bullet")
         {
             audioSource.Play();
             status.ReduceHP(1);
