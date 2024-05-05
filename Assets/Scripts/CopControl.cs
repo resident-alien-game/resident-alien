@@ -11,7 +11,8 @@ public class CopControl : MonoBehaviour
     private GunControl gunControl;
     Animator anim;
     public GameObject gun;
-    public GameObject alien;
+    public GameObject formControl;
+    private ChangeManager changeManager;
     public UnityEngine.AI.NavMeshAgent agent;
     public float walkRange; //radius of sphere
     public float patrolSpeed = 3.0f;
@@ -24,7 +25,8 @@ public class CopControl : MonoBehaviour
     void Start()
     {
         fieldOfView = GetComponent<FieldOfView>();
-        formChange = alien.GetComponent<FormChange>();
+        changeManager = formControl.GetComponent<ChangeManager>();
+        formChange = changeManager.currentForm.GetComponent<FormChange>();
         alreadyAttacked = false;
         agent = GetComponent<UnityEngine.AI.NavMeshAgent>();
         gunControl = gun.GetComponent<GunControl>();
@@ -35,7 +37,7 @@ public class CopControl : MonoBehaviour
     {
         if (fieldOfView.canSeePlayer && formChange.isAlien)
         {
-            if (Vector3.Distance(transform.position, alien.transform.position) <= attackRange && formChange.isAlien)
+            if (Vector3.Distance(transform.position, changeManager.currentForm.transform.position) <= attackRange && formChange.isAlien)
             {
                 Attack();
             }
@@ -50,7 +52,7 @@ public class CopControl : MonoBehaviour
         }
         else if (deathChase && fieldOfView.canSeePlayer)
         {
-            if (Vector3.Distance(transform.position, alien.transform.position) <= attackRange)
+            if (Vector3.Distance(transform.position, changeManager.currentForm.transform.position) <= attackRange)
             {
                 Attack();
             }
@@ -90,7 +92,8 @@ public class CopControl : MonoBehaviour
         anim.SetBool("isWalking", false);
         anim.SetBool("isShooting", false);
 
-        agent.SetDestination(alien.transform.position);
+        agent.SetDestination(changeManager.currentForm.transform.position);
+
         agent.speed = chaseSpeed;
     }
 
@@ -102,7 +105,9 @@ public class CopControl : MonoBehaviour
         anim.SetBool("isShooting", true);
 
         agent.SetDestination(transform.position);
-        transform.LookAt(alien.transform);
+
+        transform.LookAt(changeManager.currentForm.transform);
+
 
         if (!alreadyAttacked)
         {
