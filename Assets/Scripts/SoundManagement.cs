@@ -13,10 +13,30 @@ public class SoundManagement : MonoBehaviour
     public AudioSource drinkSound;
     public AudioSource manDieSound;
     public AudioSource alienDieSound;
+    public AudioSource alienGrowlSound;
+
+    public float timeInterval = 10.0f;
+    public bool isAlien;
+
+    private float timePassed = 0f;
+
 
     private void Start()
     {
         background();
+    }
+
+    private void Update()
+    {
+        if (isAlien)
+        {
+            if (timePassed >= timeInterval)
+            {
+                alienGrowl();
+                timePassed = 0f;
+            }
+            timePassed += Time.deltaTime;
+        }
     }
 
     public void police(bool play)
@@ -66,5 +86,10 @@ public class SoundManagement : MonoBehaviour
     public void alienDie()
     {
         alienDieSound.Play();
+    }
+
+    public void alienGrowl()
+    {
+        alienGrowlSound.Play();
     }
 }

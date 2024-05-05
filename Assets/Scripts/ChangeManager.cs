@@ -41,7 +41,9 @@ public class ChangeManager : MonoBehaviour
         human.SetActive(false);
         alien.SetActive(true);
         alien.transform.position = currentForm.transform.position;
-        soundManagement.police(true);
+        soundManagement.isAlien = true;
+        soundManagement.alienGrowl();
+        //soundManagement.police(true);
     }
 
     public void SwitchToHuman()
@@ -53,6 +55,7 @@ public class ChangeManager : MonoBehaviour
         alien.SetActive(false);
         human.SetActive(true);
         human.transform.position = currentForm.transform.position;
-        soundManagement.police(false);
+        soundManagement.isAlien = false;
+        //soundManagement.police(false);
     }
 }
