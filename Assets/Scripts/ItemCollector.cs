@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class ItemCollector : MonoBehaviour
 {
-    [SerializeField] private AudioSource collectPieceSound;
-    private StatusManagement status;
     public GameObject statusManager;
+    public SoundManagement soundManagement;
+    private StatusManagement status;
     private List<CopControl> copControls;
 
     private void Start()
@@ -26,7 +26,7 @@ public class ItemCollector : MonoBehaviour
                 status.AddPieces(1);
                 status.AddScore(10);
                 status.ReduceEnergy(1);
-                collectPieceSound.Play();
+                soundManagement.collect();
             }
         }
 
@@ -37,7 +37,7 @@ public class ItemCollector : MonoBehaviour
                 Destroy(other.gameObject);
                 status.AddHP(1);
                 status.AddScore(20);
-                collectPieceSound.Play();
+                soundManagement.eat();
                 SetClosestCopShouldChase(true);
             }
         }
@@ -49,7 +49,7 @@ public class ItemCollector : MonoBehaviour
                 Destroy(other.gameObject);
                 status.AddEnergy(1);
                 status.AddScore(20);
-                collectPieceSound.Play();
+                soundManagement.drink();
                 SetClosestCopShouldChase(true);
             }
         }

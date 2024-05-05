@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class ChangeManager : MonoBehaviour
 {
+    public SoundManagement soundManagement;
     public GameObject alien;
     public GameObject human;
     public GameObject currentForm;
@@ -40,6 +41,7 @@ public class ChangeManager : MonoBehaviour
         human.SetActive(false);
         alien.SetActive(true);
         alien.transform.position = currentForm.transform.position;
+        soundManagement.siren();
     }
 
     public void SwitchToHuman()
@@ -51,5 +53,6 @@ public class ChangeManager : MonoBehaviour
         alien.SetActive(false);
         human.SetActive(true);
         human.transform.position = currentForm.transform.position;
+        soundManagement.background();
     }
 }

@@ -6,6 +6,7 @@ using Interfaces;
 
 public class CivilianControl : MonoBehaviour, IAttackable
 {
+    public SoundManagement soundManagement;
     private NavMeshAgent navMeshAgent;
     //private RandomMovement randomMovement;
     public bool isDead = false;
@@ -49,6 +50,7 @@ public class CivilianControl : MonoBehaviour, IAttackable
     {
         //navMeshAgent.enabled = false;
         //randomMovement.enabled = false;
+        soundManagement.manDie();
         navMeshAgent.velocity = Vector3.zero;
         agent.isStopped = true;
         isDead = true;

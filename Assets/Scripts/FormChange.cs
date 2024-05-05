@@ -7,11 +7,11 @@ using UnityEngine.UI;
 
 public class FormChange : MonoBehaviour
 {
+    public SoundManagement soundManagement;
     public float colorChangeDuration = 10f;
 
     // Original color of the character
     public bool isAlien = true;
-    public AudioSource audioSource;
     public bool hasHumanForm = false;
     private float formChangeTimer = 0f;
 
@@ -72,7 +72,7 @@ public class FormChange : MonoBehaviour
         */
         if (other.gameObject.tag == "Bullet")
         {
-            audioSource.Play();
+            soundManagement.hurt();
             status.ReduceHP(1);
             Destroy(other.gameObject);
         }
