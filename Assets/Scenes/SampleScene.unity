@@ -2718,7 +2718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400166, guid: fbbb7e0ccd296444f8f4cb972237bf3a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.64
+      value: 0.541
       objectReference: {fileID: 0}
     - target: {fileID: 400166, guid: fbbb7e0ccd296444f8f4cb972237bf3a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3385,6 +3385,11 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2527202760935132289, guid: c5ac9b90dd824ea45b4ffd62ea9db4b5, type: 3}
   bulletSpeed: 20
   soundManagement: {fileID: 1682483219}
+--- !u!1 &682337881 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 192102, guid: 536c47ed6c4df7448adae963b41045e3, type: 3}
+  m_PrefabInstance: {fileID: 1053913218}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &686966300
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7456,7 +7461,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   soundManagement: {fileID: 1682483219}
   isDead: 0
-  assignedHouse: {fileID: 529890158}
+  assignedHouse: {fileID: 682337881}
   agent: {fileID: 1365104054}
   range: 20
 --- !u!195 &1365104054
@@ -8699,7 +8704,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400166, guid: fbbb7e0ccd296444f8f4cb972237bf3a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.64
+      value: 0.41
       objectReference: {fileID: 0}
     - target: {fileID: 400166, guid: fbbb7e0ccd296444f8f4cb972237bf3a, type: 3}
       propertyPath: m_LocalPosition.z
