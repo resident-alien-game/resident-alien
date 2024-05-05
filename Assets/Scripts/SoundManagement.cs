@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SoundManagement : MonoBehaviour
 {
-    public AudioSource sirenSound;
+    public AudioSource policeSound;
     public AudioSource backgroundSound;
     public AudioSource hurtSound;
     public AudioSource shootSound;
@@ -14,18 +14,25 @@ public class SoundManagement : MonoBehaviour
     public AudioSource manDieSound;
     public AudioSource alienDieSound;
 
-    public void siren()
+    private void Start()
     {
-        backgroundSound.Stop();
-        sirenSound.Play();
-        sirenSound.loop = true;
+        background();
+    }
+
+    public void police(bool play)
+    {
+        if (play)
+        {
+            policeSound.Play();
+        } else
+        {
+            policeSound.Stop();
+        }
     }
 
     public void background()    
     {
-        sirenSound.Stop();
         backgroundSound.Play();
-        backgroundSound.loop = true;
     }
 
     public void hurt()
