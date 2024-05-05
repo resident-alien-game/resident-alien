@@ -47,6 +47,7 @@ public class FBIControl : MonoBehaviour
         if (other.gameObject.CompareTag("Piece"))
         {
             StartCoroutine(Collecting(other.gameObject));
+            
         }
     }
 

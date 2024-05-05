@@ -10,6 +10,7 @@ public class ChangeManager : MonoBehaviour
     public GameObject currentForm;
     public bool changeToAlien = false;
     public bool changeToHuman = false;
+    public bool hasHumanForm = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -40,6 +41,7 @@ public class ChangeManager : MonoBehaviour
         currentForm.transform.position = temp;
         human.SetActive(false);
         alien.SetActive(true);
+        hasHumanForm = alien.GetComponent<FormChange>().hasHumanForm;
         alien.transform.position = currentForm.transform.position;
         soundManagement.isAlien = true;
         soundManagement.alienGrowl();
@@ -48,12 +50,14 @@ public class ChangeManager : MonoBehaviour
 
     public void SwitchToHuman()
     {
+        hasHumanForm =
         currentForm = human;
         Vector3 alienPosition = alien.transform.position;
         Vector3 temp = new Vector3(alienPosition.x, alienPosition.y + 1f, alienPosition.z);
         currentForm.transform.position = temp;
         alien.SetActive(false);
         human.SetActive(true);
+        hasHumanForm = human.GetComponent<FormChange>().hasHumanForm;
         human.transform.position = currentForm.transform.position;
         soundManagement.isAlien = false;
         //soundManagement.police(false);
