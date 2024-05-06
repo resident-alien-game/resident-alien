@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5839115535506590082}
   - component: {fileID: 3061055234720920786}
   - component: {fileID: 2403731539724462373}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Wing2_Mirrored
   m_TagString: Piece
   m_Icon: {fileID: 0}
@@ -30,7 +30,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0.00000008146034, y: -0.00000004371139, z: 3.560745e-15, w: 1}
   m_LocalPosition: {x: 12.580304, y: 5.5628853, z: 1.7070007}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5118379712134875757}
