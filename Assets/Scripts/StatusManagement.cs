@@ -14,7 +14,7 @@ public class StatusManagement : MonoBehaviour
     int Energy = 5;
     int Score = 0;
     int Pieces = 0;
-    int TotalPieces;
+    int TotalPieces = 12;
     int currentHP;
     int currentEnergy;
 
@@ -36,7 +36,6 @@ public class StatusManagement : MonoBehaviour
         {
             gameOverPanel.SetActive(false);
         }
-        TotalPieces = GameObject.FindGameObjectsWithTag("Piece").Length;
         //ScoreText.text = "Score: " + Score;
         Time.timeScale = 1f;
         currentEnergy = Energy;

@@ -31,7 +31,7 @@ public class PieceManage : MonoBehaviour
     {
         if (value > 0)
         {
-            Destroy(pieces[value]);
+            pieces[value].SetActive(false);
         }
     }
 }
