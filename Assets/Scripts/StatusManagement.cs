@@ -7,7 +7,7 @@ using TMPro;
 public class StatusManagement : MonoBehaviour
 {
     public static StatusManagement instance;
-    public TMP_Text ScoreText;
+    //public TMP_Text ScoreText;
     public GameObject gameOverPanel;
 
     int HP = 5;
@@ -37,7 +37,7 @@ public class StatusManagement : MonoBehaviour
             gameOverPanel.SetActive(false);
         }
         TotalPieces = GameObject.FindGameObjectsWithTag("Piece").Length;
-        ScoreText.text = "Score: " + Score;
+        //ScoreText.text = "Score: " + Score;
         Time.timeScale = 1f;
         currentEnergy = Energy;
         currentHP = HP;
@@ -82,7 +82,7 @@ public class StatusManagement : MonoBehaviour
     public void AddScore(int value)
     {
         Score += value;
-        ScoreText.text = "Score: " + Score;
+        //ScoreText.text = "Score: " + Score;
     }
 
     public void AddPieces(int value)
@@ -118,7 +118,7 @@ public class StatusManagement : MonoBehaviour
 
     public bool IsGameOver()
     {
-        return HP == 0 || TotalPieces == 3;
+        return currentHP == 0 || TotalPieces == 3;
     }
 
     public void GameOver()
