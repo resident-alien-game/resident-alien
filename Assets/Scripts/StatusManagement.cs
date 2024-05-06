@@ -8,7 +8,6 @@ public class StatusManagement : MonoBehaviour
 {
     public static StatusManagement instance;
     public TMP_Text ScoreText;
-    public TMP_Text PiecesText;
     public GameObject gameOverPanel;
 
     int HP = 5;
@@ -21,6 +20,7 @@ public class StatusManagement : MonoBehaviour
 
     public BarControl HPBar;
     public BarControl EnergyBar;
+    public PieceManage pieceManage;
 
 
     private void Awake()
@@ -38,12 +38,12 @@ public class StatusManagement : MonoBehaviour
         }
         TotalPieces = GameObject.FindGameObjectsWithTag("Piece").Length;
         ScoreText.text = "Score: " + Score;
-        PiecesText.text = "Pieces: " + Pieces + "/" + TotalPieces;
         Time.timeScale = 1f;
         currentEnergy = Energy;
         currentHP = HP;
         HPBar.SetMaxValue(HP);
         EnergyBar.SetMaxValue(Energy);
+        pieceManage.setMaxPiece(TotalPieces);
     }
 
     public void AddHP(int value)
@@ -88,13 +88,13 @@ public class StatusManagement : MonoBehaviour
     public void AddPieces(int value)
     {
         Pieces += value;
-        PiecesText.text = "Pieces: " + Pieces + "/" + TotalPieces;
+        pieceManage.setCheckMark(Pieces);
     }
 
     public void ReduceTotalPieces(int value)
     {
         TotalPieces -= value;
-        PiecesText.text = "Pieces: " + Pieces + "/" + TotalPieces;
+        pieceManage.setMissingPiece(TotalPieces);
         if (IsGameOver())
         {
             GameOver();
