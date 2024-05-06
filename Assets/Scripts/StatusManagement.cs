@@ -7,10 +7,7 @@ using TMPro;
 public class StatusManagement : MonoBehaviour
 {
     public static StatusManagement instance;
-    public TMP_Text HPText;
-    public TMP_Text EnergyText;
-    public TMP_Text ScoreText;
-    public TMP_Text PiecesText;
+    //public TMP_Text ScoreText;
     public GameObject gameOverPanel;
 
     int HP = 5;
@@ -18,6 +15,12 @@ public class StatusManagement : MonoBehaviour
     int Score = 0;
     int Pieces = 0;
     int TotalPieces;
+    int currentHP;
+    int currentEnergy;
+
+    public BarControl HPBar;
+    public BarControl EnergyBar;
+    public PieceManage pieceManage;
 
 
     private void Awake()
@@ -34,23 +37,27 @@ public class StatusManagement : MonoBehaviour
             gameOverPanel.SetActive(false);
         }
         TotalPieces = GameObject.FindGameObjectsWithTag("Piece").Length;
-        HPText.text = "HP: " + HP;
-        EnergyText.text = "Energy: " + Energy;
-        ScoreText.text = "Score: " + Score;
-        PiecesText.text = "Pieces: " + Pieces + "/" + TotalPieces;
+        //ScoreText.text = "Score: " + Score;
         Time.timeScale = 1f;
+        currentEnergy = Energy;
+        currentHP = HP;
+        HPBar.SetMaxValue(HP);
+        EnergyBar.SetMaxValue(Energy);
+        pieceManage.setMaxPiece(TotalPieces);
     }
 
     public void AddHP(int value)
     {
-        HP += value;
-        HPText.text = "HP: " + HP;
+        currentHP += value;
+
+        HPBar.SetValue(currentHP);
     }
 
     public void ReduceHP(int value)
     {
-        HP -= value;
-        HPText.text = "HP: " + HP;
+        currentHP -= value;
+
+        HPBar.SetValue(currentHP);
         if (IsGameOver())
         {
             GameOver();
@@ -59,33 +66,35 @@ public class StatusManagement : MonoBehaviour
 
     public void AddEnergy(int value)
     {
-        Energy += value;
-        EnergyText.text = "Energy: " + Energy;
+        currentEnergy += value;
+
+        EnergyBar.SetValue(currentEnergy);
     }
 
     public void ReduceEnergy(int value)
     {
 
-        Energy -= value;
-        EnergyText.text = "Energy: " + Energy;
+        currentEnergy -= value;
+
+        EnergyBar.SetValue(currentEnergy);
     }
 
     public void AddScore(int value)
     {
         Score += value;
-        ScoreText.text = "Score: " + Score;
+        //ScoreText.text = "Score: " + Score;
     }
 
     public void AddPieces(int value)
     {
         Pieces += value;
-        PiecesText.text = "Pieces: " + Pieces + "/" + TotalPieces;
+        pieceManage.setCheckMark(Pieces);
     }
 
     public void ReduceTotalPieces(int value)
     {
         TotalPieces -= value;
-        PiecesText.text = "Pieces: " + Pieces + "/" + TotalPieces;
+        pieceManage.setMissingPiece(TotalPieces);
         if (IsGameOver())
         {
             GameOver();
@@ -94,22 +103,22 @@ public class StatusManagement : MonoBehaviour
 
     public bool CanUseSpell()
     {
-        return Energy > 0;
+        return currentEnergy > 0;
     }
 
     public bool CanEatFood()
     {
-        return HP < 5;
+        return currentHP < 5;
     }
 
     public bool CanDrink()
     {
-        return Energy < 5;
+        return currentEnergy < 5;
     }
 
     public bool IsGameOver()
     {
-        return HP == 0 || TotalPieces == 3;
+        return currentHP == 0 || TotalPieces == 3;
     }
 
     public void GameOver()
