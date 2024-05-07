@@ -19,6 +19,7 @@ TagManager:
   - UFO
   - ChangeDirection
   - ChangeSpeed
+  - Grass
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - Piece
   - Tree
   - UFO
-  - 
+  - Grass
   - 
   - 
   - 
