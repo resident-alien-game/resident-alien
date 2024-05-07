@@ -15,6 +15,7 @@ TagManager:
   - Drink
   - House
   - Bullet
+  - Tree
   layers:
   - Default
   - TransparentFX
@@ -26,6 +27,7 @@ TagManager:
   - Alien
   - House
   - Piece
+  - Tree
   - 
   - 
   - 
