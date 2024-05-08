@@ -37,7 +37,7 @@ public class ChangeManager : MonoBehaviour
     {
         currentForm = alien;
         Vector3 humanPosition = human.transform.position;
-        Vector3 temp = new Vector3(humanPosition.x, humanPosition.y + 1f, humanPosition.z);
+        Vector3 temp = new Vector3(humanPosition.x, 2f, humanPosition.z);
         currentForm.transform.position = temp;
         human.SetActive(false);
         alien.SetActive(true);
@@ -50,10 +50,10 @@ public class ChangeManager : MonoBehaviour
 
     public void SwitchToHuman()
     {
-        hasHumanForm =
+        //hasHumanForm =
         currentForm = human;
         Vector3 alienPosition = alien.transform.position;
-        Vector3 temp = new Vector3(alienPosition.x, alienPosition.y + 1f, alienPosition.z);
+        Vector3 temp = new Vector3(alienPosition.x, 2f, alienPosition.z);
         currentForm.transform.position = temp;
         alien.SetActive(false);
         human.SetActive(true);
