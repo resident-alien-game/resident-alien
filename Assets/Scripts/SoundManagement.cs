@@ -14,6 +14,8 @@ public class SoundManagement : MonoBehaviour
     public AudioSource manDieSound;
     public AudioSource alienDieSound;
     public AudioSource alienGrowlSound;
+    public AudioSource spaceshipSound;
+    public AudioSource spaceshipAwaySound;
 
     public float timeInterval = 10.0f;
     public bool isAlien;
@@ -91,5 +93,16 @@ public class SoundManagement : MonoBehaviour
     public void alienGrowl()
     {
         alienGrowlSound.Play();
+    }
+
+    public void spaceShip(bool play)
+    {
+        if (play) spaceshipSound.Play();
+        else spaceshipSound.Stop();
+    }
+
+    public void spaceShipAway()
+    {
+        spaceshipAwaySound.Play();
     }
 }

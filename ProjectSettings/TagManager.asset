@@ -15,6 +15,11 @@ TagManager:
   - Drink
   - House
   - Bullet
+  - Tree
+  - UFO
+  - ChangeDirection
+  - ChangeSpeed
+  - Grass
   layers:
   - Default
   - TransparentFX
@@ -26,8 +31,9 @@ TagManager:
   - Alien
   - House
   - Piece
-  - 
-  - 
+  - Tree
+  - UFO
+  - Grass
   - 
   - 
   - 
