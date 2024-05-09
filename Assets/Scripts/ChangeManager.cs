@@ -34,7 +34,7 @@ public class ChangeManager : MonoBehaviour
     }
 
     public void SwitchToAlien()
-    {
+    {  
         currentForm = alien;
         Vector3 humanPosition = human.transform.position;
         Vector3 temp = new Vector3(humanPosition.x, 2f, humanPosition.z);
@@ -42,15 +42,14 @@ public class ChangeManager : MonoBehaviour
         human.SetActive(false);
         alien.SetActive(true);
         hasHumanForm = alien.GetComponent<FormChange>().hasHumanForm;
-        alien.transform.position = currentForm.transform.position;
+        alien.transform.position = currentForm.transform.position;    
         soundManagement.isAlien = true;
         soundManagement.alienGrowl();
         //soundManagement.police(true);
     }
 
     public void SwitchToHuman()
-    {
-        //hasHumanForm =
+    {  
         currentForm = human;
         Vector3 alienPosition = alien.transform.position;
         Vector3 temp = new Vector3(alienPosition.x, 2f, alienPosition.z);

@@ -71,9 +71,6 @@ public class CopControl : MonoBehaviour
     private void Patrol()
     {
         agent.speed = patrolSpeed;
-        anim.SetBool("isWalking", true);
-        anim.SetBool("isRuning", false);
-        anim.SetBool("isShooting", false);
 
         if (agent.remainingDistance <= agent.stoppingDistance) //done with path
         {
@@ -84,30 +81,28 @@ public class CopControl : MonoBehaviour
                 agent.SetDestination(point);
             }
         }
+        anim.SetBool("isWalking", true);
+        anim.SetBool("isRuning", false);
+        anim.SetBool("isShooting", false);
     }
 
     private void Chase()
     {
-        anim.SetBool("isRuning", true);
-        anim.SetBool("isWalking", false);
-        anim.SetBool("isShooting", false);
-
         agent.SetDestination(changeManager.currentForm.transform.position);
 
         agent.speed = chaseSpeed;
+        anim.SetBool("isRuning", true);
+        anim.SetBool("isWalking", false);
+        anim.SetBool("isShooting", false);
     }
 
     private void Attack()
     {
         // Stop moving when attacking
-        anim.SetBool("isWalking", false);
-        anim.SetBool("isRuning", false);
-        anim.SetBool("isShooting", true);
-
         agent.SetDestination(transform.position);
-
-        transform.LookAt(changeManager.currentForm.transform);
-
+        Vector3 formPosition = new Vector3(changeManager.currentForm.transform.position.x, transform.position.y, changeManager.currentForm.transform.position.z);
+        
+        transform.LookAt(formPosition);
 
         if (!alreadyAttacked)
         {
@@ -115,6 +110,9 @@ public class CopControl : MonoBehaviour
             alreadyAttacked = true;
             Invoke(nameof(ResetAttack), reloadTime);
         }
+        anim.SetBool("isWalking", false);
+        anim.SetBool("isRuning", false);
+        anim.SetBool("isShooting", true);
     }
 
     private void ResetAttack()
